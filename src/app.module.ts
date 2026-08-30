@@ -5,6 +5,8 @@ import { AppService } from './app.service.js';
 import { ConfigModule } from '@nestjs/config';
 import { validationSchema } from './config/index.js';
 import { appConfig } from './config/app/index.js';
+import { GoogleService } from './google/google.service.js';
+import { googleOauthConfig } from './config/google-oauth/index.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -12,7 +14,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
   imports: [
     ConfigModule.forRoot({
       validationSchema: validationSchema,
-      load: [appConfig],
+      load: [appConfig, googleOauthConfig],
     }),
     // Distributed tracing, auto-correlated logs, request/job metrics, error
     // telemetry, alarms, and more — out of the box. Sign up at https://observe.nestjs.com
@@ -23,6 +25,6 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, GoogleService],
 })
 export class AppModule {}
