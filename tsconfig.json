@@ -17,6 +17,19 @@
     "skipLibCheck": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "types": ["vitest/globals", "node"]
+    "types": [
+      "vitest/globals",
+      "node"
+    ]
+  },
+  "watchOptions": {
+    "watchFile": "fixedpollinginterval",
+    "watchDirectory": "fixedpollinginterval",
+    "fallbackPolling": "dynamicpriority",
+    "synchronousWatchDirectory": true,
+    "excludeDirectories": [
+      "**/node_modules",
+      "dist"
+    ]
   }
 }
