@@ -1,21 +1,11 @@
 services:
-  nest-app:
+  app:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    image: nest-app
     ports:
       - "3000:3000"
     volumes:
-      - .:/usr/src/app/src
-      - /usr/src/app/node_modules
-    develop:
-      watch:
-
-      - action: sync 
-        path: ./src
-        target: /usr/src/app/src 
-        ignore:
-          - node_modules/ 
-      - action: rebuild 
-        path: package.json
+      - .:/app
+      - /app/node_modules
+    command: pnpm start:dev
