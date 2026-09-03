@@ -8,13 +8,12 @@ import { google } from 'googleapis';
 @Injectable()
 export class GoogleService {
   private readonly scopesAPI: string[];
-  private readonly credentialsPath: string;
+
 
   constructor(
     @Inject(googleOauthConfig.KEY)
     private googleCredsConfig: ConfigType<typeof googleOauthConfig>,
   ) {
-    this.credentialsPath = path.join(process.cwd());
     this.scopesAPI = this.googleCredsConfig.scopeApi;
   }
 

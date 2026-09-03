@@ -16,14 +16,20 @@ export class AppController {
     return this.appService.googleAuth();
   }
 
-  @Get('google-callback')
+  @Get('redirect')
   @Redirect()
   async googleAuthCallback(
     @Query('code') code: string,
   ): Promise<{ url: string }> {
     const { email, refreshToken, accessToken } =
       await this.appService.getAuthClientData(code);
-    // Implement additional sign-in logic here
-    return { url: 'https://localhost:3000/redirect' };
+    const messages = await this.appService.syncGmail(refreshToken);
+
+    console.log('Google account:', email);
+    console.log('Messages:', messages.length);
+
+    return {
+      url: 'https://localhost:3000/redirect',
+    };
   }
 }

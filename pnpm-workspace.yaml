@@ -1,2 +1,9 @@
+allowBuilds:
+  '@tensorflow/tfjs-node': set this to true or false
+  core-js: set this to true or false
+  es5-ext: set this to true or false
+  iconv: set this to true or false
+  re2: set this to true or false
+  sharp: set this to true or false
 overrides:
   google-auth-library: 11.0.2

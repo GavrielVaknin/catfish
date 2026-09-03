@@ -7,6 +7,8 @@ import { validationSchema } from './config/index.js';
 import { appConfig } from './config/app/index.js';
 import { GoogleService } from './google/google.service.js';
 import { googleOauthConfig } from './config/google-oauth/index.js';
+import { GmailService } from './google/gmail.service.js';
+import { SpamService } from './google/spam.service.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -25,6 +27,6 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, GoogleService],
+  providers: [AppService, GoogleService, GmailService, SpamService],
 })
 export class AppModule {}
