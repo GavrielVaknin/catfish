@@ -11,5 +11,5 @@ services:
       - .:/app
       - catfish_node_modules:/app/node_modules
 
-  volumes:
-    catfish_node_modules:
+volumes:
+  catfish_node_modules:
