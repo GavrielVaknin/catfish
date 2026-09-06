@@ -19,11 +19,9 @@ COPY . .
 RUN pnpm build
 
 
-FROM node:24-alpine AS production
+FROM base AS production
 
-WORKDIR /app
-
-RUN corepack enable
+ENV NODE_ENV=production
 
 COPY package.json pnpm-lock.yaml ./
 
@@ -31,6 +29,10 @@ RUN pnpm install --prod --frozen-lockfile
 
 COPY --from=builder /app/dist ./dist
 
+RUN chown -R node:node /app
+
+USER node
+
 EXPOSE 3000
 
-CMD ["node", "dist/main"]
+CMD ["node", "dist/main.js"]
